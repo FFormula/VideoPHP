@@ -1,4 +1,10 @@
-<?php $this->beginPage(); ?>
+<?php
+
+use yii\bootstrap\Nav;
+use yii\bootstrap\NavBar;
+
+$this->beginPage();
+?>
 <html>
     <head>
         <title>Video School</title>
@@ -7,14 +13,22 @@
     <body>
         <?php $this->beginBody(); ?>
 <?php
-    \yii\bootstrap\NavBar::begin([
+    NavBar::begin([
         'brandLabel' => 'ITVDN',
         'brandUrl' => Yii::$app->homeUrl,
         'options' => [
             'class' => 'navbar-default navbar-fixed-top'
         ]
     ]);
-    \yii\bootstrap\NavBar::end();
+    $items = [
+        ['label' => 'Join',  'url' => ['/site/join']],
+        ['label' => 'Login', 'url' => ['/site/login']]
+    ];
+    echo Nav::widget([
+       'options' => ['class' => 'navbar-nav navbar-right'],
+       'items' => $items
+    ]);
+    NavBar::end();
 ?>
         <div class="container" style="margin-top: 60px">
             <?= $content ?>
